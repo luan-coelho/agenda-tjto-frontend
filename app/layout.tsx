@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "flex h-screen min-h-screen items-center justify-center bg-background font-sans antialiased",
           fontSans.variable,
         )}>
-        <div className="size-5/6 h-5/6 w-5/6 rounded-xl border-2 border-gray-200 p-4">
+        <div className="size-5/6 rounded-xl border-2 border-gray-200 p-4">
           <div className="flex flex-col">
             <div className="flex items-center justify-center">
               <Index words={["teste", "alegria"]} />
