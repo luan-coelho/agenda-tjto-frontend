@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 import { Inter as FontSans } from "next/font/google"
 
 import { cn } from "@/lib/utils"
+import ScrollToTop from "@/components/ui/scroll-to-top"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -15,12 +16,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head />
       <body
         className={cn(
-          "m-5 flex min-h-screen items-center justify-center bg-background font-sans antialiased",
+          "m-10 flex h-full min-h-full items-center justify-center bg-background font-sans antialiased",
           fontSans.variable,
         )}>
-        <div className="w-5/6 rounded-xl border-2 border-gray-200 p-4">
+        <div className="min-h-full w-5/6 rounded-xl border-2 border-gray-200 p-4">
           <div className="flex flex-col">
             <main>{children}</main>
+            <ScrollToTop />
           </div>
         </div>
       </body>
