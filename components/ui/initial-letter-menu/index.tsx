@@ -18,7 +18,7 @@ export function Index({ words }: InitialLetterMenuProps) {
           <Button
             key={letter}
             disabled={!uniqueInitials.includes(letter)}
-            className={`h-[30px] w-[30px] border-2 border-blue-600 font-medium uppercase text-blue-600 ${
+            className={`size-[30px] border-2 border-blue-600 font-medium uppercase text-blue-600 ${
               uniqueInitials.includes(letter)
                 ? "bg-blue-600 text-white hover:bg-blue-700"
                 : "cursor-not-allowed border border-gray-300 bg-gray-200 text-gray-500"

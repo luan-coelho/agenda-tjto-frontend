@@ -5,9 +5,10 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier",
   ],
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["prettier", "react", "@typescript-eslint"],
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: "module",
