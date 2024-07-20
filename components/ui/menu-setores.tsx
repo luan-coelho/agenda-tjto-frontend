@@ -1,20 +1,22 @@
 "use client"
 
 import { ComponentProps, useState } from "react"
+import { Setor } from "@/types"
 import { Search } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 
 type MenuSetoresProps = ComponentProps<"div"> & {
-  setores: string[]
+  setores: Setor[]
 }
 
 export default function MenuSetores({ setores, className }: MenuSetoresProps) {
-  const [setoresFiltrados, setSetoresFiltrados] = useState(setores)
+  const nomesSetores = setores.map(setor => setor.nome)
+  const [setoresFiltrados, setSetoresFiltrados] = useState(nomesSetores)
 
   function filtrarSetores(pesquisa: string) {
-    setSetoresFiltrados(setores.filter(setor => setor.toLowerCase().includes(pesquisa.toLowerCase())))
+    setSetoresFiltrados(nomesSetores.filter(setor => setor.toLowerCase().includes(pesquisa.toLowerCase())))
   }
 
   const groupedSetores = setoresFiltrados.reduce(

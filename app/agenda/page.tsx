@@ -6,7 +6,7 @@ export default function AgendaPage() {
   return (
     <div className="flex items-start">
       <MenuSetores className="w-2/5" setores={setores} />
-      <MenuLetrasIniciais className="w-3/5" palavras={setores} />
+      <MenuLetrasIniciais className="w-3/5" palavras={setores.map(setor => setor.nome)} />
     </div>
   )
 }
