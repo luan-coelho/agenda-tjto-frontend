@@ -27,7 +27,7 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
           </div>
         </form>
       </div>
-      <div className="flex flex-1 flex-col gap-3 overflow-y-auto bg-white">
+      <div className="scroll flex max-h-svh flex-1 flex-col gap-3 overflow-y-auto bg-white">
         {setoresFiltrados.map(setor => (
           <div key={setor}>
             <span>{setor}</span>
