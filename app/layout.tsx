@@ -19,9 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           "flex h-full items-center justify-center bg-background font-sans antialiased",
           fontSans.variable,
         )}>
-        <div className="flex flex-col rounded-xl p-4">
-          <main>{children}</main>
-        </div>
+        {children}
       </body>
     </html>
   )
