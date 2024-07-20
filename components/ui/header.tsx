@@ -10,7 +10,7 @@ export default function Header() {
           width={300}
           height={100}
         />
-        <h1 className="text-4xl font-bold text-white">Agenda Telefônica TJTO</h1>
+        <h1 className="text-4xl font-bold text-white">Agenda Telefônica</h1>
       </div>
     </header>
   )

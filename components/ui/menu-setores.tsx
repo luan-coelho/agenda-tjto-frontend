@@ -27,12 +27,15 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
           </div>
         </form>
       </div>
-      <div className="scroll flex flex-col gap-3 overflow-y-scroll bg-white">
+      <div className="flex flex-1 flex-col gap-3 overflow-y-auto bg-white">
         {setoresFiltrados.map(setor => (
           <div key={setor}>
             <span>{setor}</span>
           </div>
         ))}
+        {setoresFiltrados.length === 0 && (
+          <span className="text-center text-muted-foreground">Nenhum setor encontrado</span>
+        )}
       </div>
     </div>
   )
