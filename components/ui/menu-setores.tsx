@@ -17,8 +17,28 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
     setSetoresFiltrados(setores.filter(setor => setor.toLowerCase().includes(pesquisa.toLowerCase())))
   }
 
+  const groupedSetores = setoresFiltrados.reduce(
+    (acc, setor) => {
+      const firstLetter = setor[0].toUpperCase()
+      if (!acc[firstLetter]) {
+        acc[firstLetter] = []
+      }
+      acc[firstLetter].push(setor)
+      return acc
+    },
+    {} as { [key: string]: string[] },
+  )
+
+  // Ordena as chaves (letras iniciais) em ordem alfabética
+  const sortedKeys = Object.keys(groupedSetores).sort()
+
+  // Ordena os setores dentro de cada grupo em ordem alfabética
+  sortedKeys.forEach(key => {
+    groupedSetores[key].sort()
+  })
+
   return (
-    <div className={cn("flex flex-col gap-4 px-4", className)}>
+    <div className={cn("flex h-screen flex-col gap-4 px-4", className)}>
       <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <form>
           <div className="relative">
@@ -27,10 +47,23 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
           </div>
         </form>
       </div>
-      <div className="scroll flex max-h-svh flex-1 flex-col gap-3 overflow-y-auto bg-white">
-        {setoresFiltrados.map(setor => (
-          <div key={setor}>
-            <span>{setor}</span>
+      <div className="box1 flex grow flex-col overflow-y-auto bg-white">
+        {sortedKeys.map(letra => (
+          <div key={letra} className="group">
+            <div className="flex items-center">
+              <div className="mr-2 h-8 w-1 bg-blue-400"></div>
+              <h2 className="text-2xl font-bold text-blue-500">{letra}</h2>
+            </div>
+            <div className="flex flex-col gap-2 px-4 py-3">
+              {groupedSetores[letra].map(setor => (
+                <span
+                  id={letra}
+                  className="block w-full rounded-md p-2 transition delay-100 hover:cursor-pointer hover:bg-blue-500 hover:text-white"
+                  key={setor}>
+                  {setor}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
         {setoresFiltrados.length === 0 && (

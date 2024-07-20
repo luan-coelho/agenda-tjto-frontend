@@ -70,6 +70,8 @@
 
   .box1 {
     display: block;
+    max-height: 100vh; /* Limita a altura máxima para a da viewport */
+    overflow-y: auto;
   }
 
   /*Box 1 ScrollBar*/

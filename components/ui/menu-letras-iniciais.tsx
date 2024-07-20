@@ -20,10 +20,10 @@ export function MenuLetrasIniciais({ palavras, className }: MenuLetrasIniciaisPr
           <Button
             key={letra}
             disabled={!letrasIniciais.includes(letra)}
-            className={`size-[40px] border-2 border-blue-600 font-medium uppercase text-blue-600 ${
+            className={`size-[30px] text-xl font-medium uppercase text-blue-600 ${
               letrasIniciais.includes(letra)
-                ? "bg-blue-600 text-white hover:bg-blue-700"
-                : "cursor-not-allowed border border-gray-300 bg-gray-200 text-gray-500"
+                ? "border border-blue-500 bg-blue-500 text-white hover:bg-blue-600"
+                : "cursor-not-allowed border border-gray-300 bg-gray-200 text-gray-600"
             }`}>
             {letra}
           </Button>
