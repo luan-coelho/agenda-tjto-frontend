@@ -5,10 +5,8 @@ import { setores } from "@/app/data"
 export default function Home() {
   return (
     <div className="flex items-start">
-      <MenuSetores setores={setores} />
-      <div className="sticky top-0 flex items-center justify-center">
-        <MenuLetrasIniciais palavras={setores} />
-      </div>
+      <MenuSetores className="w-2/5" setores={setores} />
+      <MenuLetrasIniciais className="w-3/5" palavras={setores} />
     </div>
   )
 }

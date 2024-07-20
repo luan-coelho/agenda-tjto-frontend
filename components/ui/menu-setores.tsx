@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { ComponentProps, useState } from "react"
 import { Search } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 
-type MenuSetoresProps = {
+type MenuSetoresProps = ComponentProps<"div"> & {
   setores: string[]
 }
 
-export default function MenuSetores({ setores }: MenuSetoresProps) {
+export default function MenuSetores({ setores, className }: MenuSetoresProps) {
   const [setoresFiltrados, setSetoresFiltrados] = useState(setores)
 
   function filtrarSetores(pesquisa: string) {
@@ -17,7 +18,7 @@ export default function MenuSetores({ setores }: MenuSetoresProps) {
   }
 
   return (
-    <div className="flex flex-col gap-4 px-4">
+    <div className={cn("flex flex-col gap-4 px-4", className)}>
       <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <form>
           <div className="relative">
@@ -26,7 +27,7 @@ export default function MenuSetores({ setores }: MenuSetoresProps) {
           </div>
         </form>
       </div>
-      <div>
+      <div className="scroll flex flex-col gap-3 overflow-y-scroll bg-white">
         {setoresFiltrados.map(setor => (
           <div key={setor}>
             <span>{setor}</span>

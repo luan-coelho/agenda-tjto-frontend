@@ -1,18 +1,21 @@
 "use client"
 
+import { ComponentProps } from "react"
+
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-type MenuLetrasIniciaisProps = {
+type MenuLetrasIniciaisProps = ComponentProps<"div"> & {
   palavras: string[]
 }
 
-export function MenuLetrasIniciais({ palavras }: MenuLetrasIniciaisProps) {
+export function MenuLetrasIniciais({ palavras, className }: MenuLetrasIniciaisProps) {
   const letrasIniciais = Array.from(new Set(palavras.map(word => word[0].toUpperCase())))
   const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
 
   return (
-    <aside className="rounded-md bg-white px-3 py-2">
-      <div className="flex flex-wrap items-center justify-start gap-3">
+    <aside className={cn("flex rounded-md bg-white px-3 py-2", className)}>
+      <div className="flex flex-wrap items-center justify-center gap-3">
         {alfabeto.map(letra => (
           <Button
             key={letra}
