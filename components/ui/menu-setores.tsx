@@ -55,14 +55,14 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
           <div key={letra} className="group">
             <div className="flex items-center">
               <div className="mr-2 h-8 w-1 bg-blue-400"></div>
-              <h2 className="text-2xl font-bold text-blue-500">{letra}</h2>
+              <h2 className="text-2xl font-bold text-oceanBlue-500">{letra}</h2>
             </div>
             <div className="flex flex-col gap-2 px-4 py-3">
               {groupedSetores[letra].map(setor => (
                 <span
                   onClick={() => alterarSetor(setor)}
                   id={letra}
-                  className="block w-full rounded-md p-2 transition delay-100 hover:cursor-pointer hover:bg-blue-500 hover:text-white"
+                  className="block w-full rounded-md p-2 transition delay-100 hover:cursor-pointer hover:bg-oceanBlue-500 hover:text-white"
                   key={setor.id}>
                   {setor.nome}
                 </span>

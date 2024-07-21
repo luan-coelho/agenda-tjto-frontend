@@ -1,9 +1,9 @@
 // Interface para o TipoContato
 export enum TipoContato {
-  TELEFONE = "TELEFONE",
-  EMAIL = "EMAIL",
-  FAX = "FAX",
-  OUTRO = "OUTRO",
+  TELEFONE = "Telefone",
+  EMAIL = "Email",
+  FAX = "Fax",
+  OUTRO = "Outro",
 }
 
 // Interface para Contato

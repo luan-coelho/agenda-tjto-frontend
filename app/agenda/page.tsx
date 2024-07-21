@@ -2,10 +2,10 @@
 
 import { useAgenda } from "@/contexts/agenda-context"
 
+import { Badge } from "@/components/ui/badge"
+import Linha from "@/components/ui/linha"
 import { MenuLetrasIniciais } from "@/components/ui/menu-letras-iniciais"
 import MenuSetores from "@/components/ui/menu-setores"
-import { columns } from "@/app/agenda/(components)/columns"
-import { DataTable } from "@/app/agenda/(components)/data-table"
 import { setores } from "@/app/data"
 
 export default function AgendaPage() {
@@ -14,28 +14,42 @@ export default function AgendaPage() {
   return (
     <div className="flex items-start">
       <MenuSetores className="w-2/5" setores={setores} />
-      <div className="flex flex-col gap-5">
-        <MenuLetrasIniciais className="w-3/5" palavras={setores.map(setor => setor.nome)} />
-        <div>
-          <h3 className="text-2xl font-semibold">{setor.nome}</h3>
-          <div>
-            <div className="mt-2 flex gap-2">
-              <span className="font-semibold">Responsável:</span>
-              <span>{setor.responsavel}</span>
+      <div className="flex w-3/5 flex-col gap-5">
+        <MenuLetrasIniciais palavras={setores.map(setor => setor.nome)} />
+        {setor.id != null && (
+          <div className="mx-[40px]">
+            <h3 className="text-2xl font-bold">{setor.nome}</h3>
+            <div className="mt-5">
+              <div className="mt-2 flex gap-2">
+                <span className="font-semibold">Responsável:</span>
+                <span>{setor.responsavel}</span>
+              </div>
+              <div className="mt-2 flex gap-2">
+                <span className="font-semibold">Endereço:</span>
+                <span>{setor.endereco}</span>
+              </div>
+              <div className="mt-2 flex gap-2">
+                <span className="font-semibold">Horário de Funcionamento:</span>
+                <span>{setor.horarioFuncionamento}</span>
+              </div>
             </div>
-            <div className="mt-2 flex gap-2">
-              <span className="font-semibold">Endereço:</span>
-              <span>{setor.endereco}</span>
-            </div>
-            <div className="mt-2 flex gap-2">
-              <span className="font-semibold">Horário de Funcionamento:</span>
-              <span>{setor.horarioFuncionamento}</span>
+            <Linha />
+            <div className="flex flex-col">
+              <h4 className="text-xl font-semibold">Contatos</h4>
+              <div className="mt-2">
+                {setor.contatos.map((contato, index) => (
+                  <div key={contato.id}>
+                    <div className="mt-2 flex gap-2">
+                      <span>{contato.descricao}</span> - <span>{contato.valor}</span>
+                      <Badge className="bg-aquaTeal-600">{contato.tipo}</Badge>
+                    </div>
+                    {index % 2 == 1 && <Linha />}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="container mx-auto py-10">
-            {setor.id != null && <DataTable columns={columns} data={setor.contatos} />}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   )
