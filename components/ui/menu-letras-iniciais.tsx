@@ -14,7 +14,7 @@ export function MenuLetrasIniciais({ palavras, className }: MenuLetrasIniciaisPr
   const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
 
   return (
-    <aside className={cn("flex rounded-md bg-white px-3 py-2", className)}>
+    <aside className={cn("sticky top-3 flex rounded-md bg-white px-3 py-2", className)}>
       <div className="flex flex-wrap items-center justify-center gap-3">
         {alfabeto.map(letra => (
           <Button

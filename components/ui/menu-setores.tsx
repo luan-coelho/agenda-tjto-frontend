@@ -13,7 +13,7 @@ type MenuSetoresProps = ComponentProps<"div"> & {
 }
 
 export default function MenuSetores({ setores, className }: MenuSetoresProps) {
-  const { alterarSetor } = useAgenda()
+  const { setor: setorSelecionado, alterarSetor } = useAgenda()
   const [setoresFiltrados, setSetoresFiltrados] = useState(setores)
 
   function filtrarSetores(pesquisa: string) {
@@ -53,16 +53,18 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
       <div className="box1 flex grow flex-col overflow-y-auto bg-white">
         {sortedKeys.map(letra => (
           <div key={letra} className="group">
-            <div className="flex items-center">
+            <div className="sticky top-8 flex items-center">
               <div className="mr-2 h-8 w-1 bg-blue-400"></div>
               <h2 className="text-2xl font-bold text-oceanBlue-500">{letra}</h2>
             </div>
-            <div className="flex flex-col gap-2 px-4 py-3">
+            <div className="flex flex-col gap-2 px-14 py-1">
               {groupedSetores[letra].map(setor => (
                 <span
                   onClick={() => alterarSetor(setor)}
                   id={letra}
-                  className="block w-full rounded-md p-2 transition delay-100 hover:cursor-pointer hover:bg-oceanBlue-500 hover:text-white"
+                  className={cn("rounded-md p-2 hover:cursor-pointer hover:bg-oceanBlue-500 hover:text-white", {
+                    "bg-oceanBlue-500 text-white": setor.id === setorSelecionado.id,
+                  })}
                   key={setor.id}>
                   {setor.nome}
                 </span>

@@ -37,13 +37,10 @@ export default function AgendaPage() {
             <div className="flex flex-col">
               <h4 className="text-xl font-semibold">Contatos</h4>
               <div className="mt-2">
-                {setor.contatos.map((contato, index) => (
-                  <div key={contato.id}>
-                    <div className="mt-2 flex gap-2">
-                      <span>{contato.descricao}</span> - <span>{contato.valor}</span>
-                      <Badge className="bg-aquaTeal-600">{contato.tipo}</Badge>
-                    </div>
-                    {index % 2 == 1 && <Linha />}
+                {setor.contatos.map(contato => (
+                  <div key={contato.id} className="mt-2 flex gap-2">
+                    <span>{contato.descricao}</span> - <span>{contato.valor}</span>
+                    <Badge className="bg-aquaTeal-600">{contato.tipo}</Badge>
                   </div>
                 ))}
               </div>
