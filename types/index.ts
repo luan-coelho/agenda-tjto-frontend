@@ -12,7 +12,6 @@ export interface Contato {
   tipo: TipoContato
   descricao: string
   valor: string
-  setor: Setor | null
 }
 
 // Interface para Setor

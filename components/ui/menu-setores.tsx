@@ -1,6 +1,7 @@
 "use client"
 
 import { ComponentProps, useState } from "react"
+import { useAgenda } from "@/contexts/agenda-context"
 import { Setor } from "@/types"
 import { Search } from "lucide-react"
 
@@ -12,23 +13,23 @@ type MenuSetoresProps = ComponentProps<"div"> & {
 }
 
 export default function MenuSetores({ setores, className }: MenuSetoresProps) {
-  const nomesSetores = setores.map(setor => setor.nome)
-  const [setoresFiltrados, setSetoresFiltrados] = useState(nomesSetores)
+  const { alterarSetor } = useAgenda()
+  const [setoresFiltrados, setSetoresFiltrados] = useState(setores)
 
   function filtrarSetores(pesquisa: string) {
-    setSetoresFiltrados(nomesSetores.filter(setor => setor.toLowerCase().includes(pesquisa.toLowerCase())))
+    setSetoresFiltrados(setores.filter(setor => setor.nome.toLowerCase().includes(pesquisa.toLowerCase())))
   }
 
   const groupedSetores = setoresFiltrados.reduce(
     (acc, setor) => {
-      const firstLetter = setor[0].toUpperCase()
+      const firstLetter = setor.nome[0].toUpperCase()
       if (!acc[firstLetter]) {
         acc[firstLetter] = []
       }
       acc[firstLetter].push(setor)
       return acc
     },
-    {} as { [key: string]: string[] },
+    {} as { [key: string]: Setor[] },
   )
 
   // Ordena as chaves (letras iniciais) em ordem alfabética
@@ -59,10 +60,11 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
             <div className="flex flex-col gap-2 px-4 py-3">
               {groupedSetores[letra].map(setor => (
                 <span
+                  onClick={() => alterarSetor(setor)}
                   id={letra}
                   className="block w-full rounded-md p-2 transition delay-100 hover:cursor-pointer hover:bg-blue-500 hover:text-white"
-                  key={setor}>
-                  {setor}
+                  key={setor.id}>
+                  {setor.nome}
                 </span>
               ))}
             </div>
