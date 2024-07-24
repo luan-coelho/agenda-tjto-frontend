@@ -14,7 +14,7 @@ export default function AgendaPage() {
   return (
     <div className="lg:flex lg:items-start">
       <MenuSetores className="lg:w-2/5" setores={setores} />
-      <div className="flex-col gap-5 lg:flex lg:w-3/5">
+      <div className="sticky top-3 mx-10 flex-col gap-5 lg:flex lg:w-3/5">
         <MenuLetrasIniciais palavras={setores.map(setor => setor.nome)} />
         {setor.id != null && (
           <div className="mt-8 lg:mx-[40px] lg:mt-2">
@@ -40,8 +40,8 @@ export default function AgendaPage() {
               <div className="mt-2">
                 {setor.contatos.map(contato => (
                   <div key={contato.id} className="mt-2 flex gap-2">
-                    <span>{contato.descricao}</span> - <span>{contato.valor}</span>
-                    <Badge className="bg-aquaTeal-600">{contato.tipo}</Badge>
+                    <span>{contato.descricao}</span> <span>{contato.valor}</span>
+                    <Badge className="bg-aquaTeal-600 hover:bg-aquaTeal-600">{contato.tipo}</Badge>
                   </div>
                 ))}
               </div>
