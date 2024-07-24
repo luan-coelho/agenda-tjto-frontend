@@ -16,6 +16,24 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
   const { setor: setorSelecionado, alterarSetor } = useAgenda()
   const [setoresFiltrados, setSetoresFiltrados] = useState(setores)
 
+  function scrollToEnd() {
+    const handleResize = () => {
+      if (window.innerWidth <= 1024) {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        })
+      }
+    }
+
+    handleResize()
+
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }
+
   function filtrarSetores(pesquisa: string) {
     setSetoresFiltrados(setores.filter(setor => setor.nome.toLowerCase().includes(pesquisa.toLowerCase())))
   }
@@ -32,16 +50,14 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
     {} as { [key: string]: Setor[] },
   )
 
-  // Ordena as chaves (letras iniciais) em ordem alfabética
   const sortedKeys = Object.keys(groupedSetores).sort()
 
-  // Ordena os setores dentro de cada grupo em ordem alfabética
   sortedKeys.forEach(key => {
     groupedSetores[key].sort()
   })
 
   return (
-    <div className={cn("flex h-screen flex-col gap-4 px-4", className)}>
+    <div className={cn("flex flex-col gap-4 px-4 lg:h-screen", className)}>
       <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <form>
           <div className="relative">
@@ -50,7 +66,7 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
           </div>
         </form>
       </div>
-      <div className="box1 flex grow flex-col overflow-y-auto bg-white">
+      <div className="lg:box1 flex flex-col bg-white lg:grow lg:overflow-y-auto">
         {sortedKeys.map(letra => (
           <div key={letra} className="group">
             <div className="sticky top-8 flex items-center">
@@ -60,7 +76,10 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
             <div className="flex flex-col gap-2 px-14 py-1">
               {groupedSetores[letra].map(setor => (
                 <span
-                  onClick={() => alterarSetor(setor)}
+                  onClick={() => {
+                    alterarSetor(setor)
+                    scrollToEnd()
+                  }}
                   id={letra}
                   className={cn("rounded-md p-2 hover:cursor-pointer hover:bg-oceanBlue-500 hover:text-white", {
                     "bg-oceanBlue-500 text-white": setor.id === setorSelecionado.id,

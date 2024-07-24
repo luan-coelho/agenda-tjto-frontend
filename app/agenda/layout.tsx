@@ -11,7 +11,7 @@ export default function AgendaLayout({ children }: { children: ReactNode }) {
     <AgendaProvider>
       <div className="flex size-full flex-col rounded-xl">
         <Header />
-        <main className="mx-10 mb-[70px] mt-10">{children}</main>
+        <main className="mx-10 mb-[100px] mt-10">{children}</main>
         <Footer />
       </div>
     </AgendaProvider>

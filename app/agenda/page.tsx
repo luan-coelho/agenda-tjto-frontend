@@ -12,20 +12,21 @@ export default function AgendaPage() {
   const { setor } = useAgenda()
 
   return (
-    <div className="flex items-start">
-      <MenuSetores className="w-2/5" setores={setores} />
-      <div className="flex w-3/5 flex-col gap-5">
+    <div className="lg:flex lg:items-start">
+      <MenuSetores className="lg:w-2/5" setores={setores} />
+      <div className="flex-col gap-5 lg:flex lg:w-3/5">
         <MenuLetrasIniciais palavras={setores.map(setor => setor.nome)} />
         {setor.id != null && (
-          <div className="mx-[40px]">
-            <h3 className="text-2xl font-bold">{setor.nome}</h3>
+          <div className="mt-8 lg:mx-[40px] lg:mt-2">
+            <Linha className="lg:hidden" />
+            <h3 className="text-center text-2xl font-bold lg:text-start">{setor.nome}</h3>
             <div className="mt-5">
               <div className="mt-2 flex gap-2">
                 <span className="font-semibold">Responsável:</span>
                 <span>{setor.responsavel}</span>
               </div>
               <div className="mt-2 flex gap-2">
-                <span className="font-semibold">Endereço:</span>
+                <span className="text-justify font-semibold">Endereço:</span>
                 <span>{setor.endereco}</span>
               </div>
               <div className="mt-2 flex gap-2">
