@@ -38,23 +38,31 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
     setSetoresFiltrados(setores.filter(setor => setor.nome.toLowerCase().includes(pesquisa.toLowerCase())))
   }
 
-  const groupedSetores = setoresFiltrados.reduce(
+  const setoresAgrupados = setoresFiltrados.reduce(
     (acc, setor) => {
-      const firstLetter = setor.nome[0].toUpperCase()
-      if (!acc[firstLetter]) {
-        acc[firstLetter] = []
+      const primeiraLetra = setor.nome[0].toUpperCase()
+      if (!acc[primeiraLetra]) {
+        acc[primeiraLetra] = []
       }
-      acc[firstLetter].push(setor)
+      acc[primeiraLetra].push(setor)
       return acc
     },
     {} as { [key: string]: Setor[] },
   )
 
-  const sortedKeys = Object.keys(groupedSetores).sort()
+  const chavesOrdenadas = Object.keys(setoresAgrupados).sort()
 
-  sortedKeys.forEach(key => {
-    groupedSetores[key].sort()
+  chavesOrdenadas.forEach(key => {
+    setoresAgrupados[key].sort()
   })
+
+  function alterarOuRemoverSetor(setor: Setor) {
+    if (setor.id == setorSelecionado.id) {
+      alterarSetor({} as Setor)
+      return
+    }
+    alterarSetor(setor)
+  }
 
   return (
     <div className={cn("flex flex-col gap-4 px-4 lg:h-screen", className)}>
@@ -67,17 +75,17 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
         </form>
       </div>
       <div className="lg:box1 flex flex-col bg-white lg:grow lg:overflow-y-auto">
-        {sortedKeys.map(letra => (
+        {chavesOrdenadas.map(letra => (
           <div key={letra} className="group">
             <div className="sticky top-8 flex items-center">
               <div className="mr-2 h-8 w-1 bg-blue-400"></div>
               <h2 className="text-2xl font-bold text-oceanBlue-500">{letra}</h2>
             </div>
             <div className="flex flex-col gap-2 px-14 py-1">
-              {groupedSetores[letra].map(setor => (
+              {setoresAgrupados[letra].map(setor => (
                 <span
                   onClick={() => {
-                    alterarSetor(setor)
+                    alterarOuRemoverSetor(setor)
                     scrollToEnd()
                   }}
                   id={letra}
@@ -92,7 +100,9 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
           </div>
         ))}
         {setoresFiltrados.length === 0 && (
-          <span className="text-center text-muted-foreground">Nenhum setor encontrado</span>
+          <div className="flex items-center justify-center">
+            <span className="text-muted-foreground">Nenhum resultado encontrado</span>
+          </div>
         )}
       </div>
     </div>

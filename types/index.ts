@@ -1,4 +1,10 @@
-// Interface para o TipoContato
+export function criarHora(hora: string): Date {
+  const [horas, minutos] = hora.split(":").map(Number)
+  const agora = new Date()
+  agora.setHours(horas, minutos, 0, 0)
+  return agora
+}
+
 export enum TipoContato {
   TELEFONE = "Telefone",
   EMAIL = "Email",
@@ -6,20 +12,39 @@ export enum TipoContato {
   OUTRO = "Outro",
 }
 
-// Interface para Contato
 export interface Contato {
   id: number
   tipo: TipoContato
-  descricao: string
   valor: string
 }
 
-// Interface para Setor
+export interface Horario {
+  diaSemana: DiaSemana
+  inicio: Date
+  fim: Date
+}
+
+export enum DiaSemana {
+  Segunda = "Segunda",
+  Terca = "Terça",
+  Quarta = "Quarta",
+  Quinta = "Quinta",
+  Sexta = "Sexta",
+  Sabado = "Sábado",
+  Domingo = "Domingo",
+}
+
+export interface Equipe {
+  id: number
+  descricao: string
+  contatos: Contato[]
+}
+
 export interface Setor {
   id: number
   nome: string
   responsavel: string
   endereco: string
-  horarioFuncionamento: string // Formato ISO 8601, por exemplo "08:00:00"
-  contatos: Contato[]
+  horarioFuncionamento: Horario[]
+  equipes: Equipe[]
 }
