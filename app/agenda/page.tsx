@@ -13,6 +13,7 @@ export default function AgendaPage() {
 
   return (
     <div className="lg:flex lg:items-start">
+      <title>Agenda Telefônica</title>
       <MenuSetores className="lg:w-2/5" setores={setores} />
       <div className="sticky top-3 mx-10 flex-col gap-5 lg:flex lg:w-3/5">
         <MenuLetrasIniciais palavras={setores.map(setor => setor.nome)} />
