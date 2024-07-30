@@ -77,11 +77,11 @@ export default function MenuSetores({ setores, className }: MenuSetoresProps) {
       <div className="lg:box1 flex flex-col bg-white lg:grow lg:overflow-y-auto">
         {chavesOrdenadas.map(letra => (
           <div key={letra} className="group">
-            <div className="sticky top-8 flex items-center">
+            <div className="sticky top-14 z-10 mt-4 flex items-center">
               <div className="mr-2 h-8 w-1 bg-blue-400"></div>
               <h2 className="text-2xl font-bold text-oceanBlue-500">{letra}</h2>
             </div>
-            <div className="flex flex-col gap-2 px-14 py-1">
+            <div className="relative z-20 flex flex-col gap-2 px-14 py-1">
               {setoresAgrupados[letra].map(setor => (
                 <span
                   onClick={() => {

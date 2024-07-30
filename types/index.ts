@@ -6,7 +6,7 @@ export enum TipoContato {
 }
 
 export interface Contato {
-  id: number
+  id: string
   tipo: TipoContato
   valor: string
 }
@@ -28,13 +28,13 @@ export enum DiaSemana {
 }
 
 export interface Equipe {
-  id: number
+  id: string
   descricao: string
   contatos: Contato[]
 }
 
 export interface Setor {
-  id: number
+  id: string
   nome: string
   responsavel: string
   endereco: string

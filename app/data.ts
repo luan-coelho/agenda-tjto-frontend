@@ -1,4 +1,5 @@
 import { Contato, DiaSemana, Equipe, Setor, TipoContato } from "@/types"
+import { v4 as uuidv4 } from "uuid"
 
 export function criarHora(hora: string): Date {
   const [horas, minutos] = hora.split(":").map(Number)
@@ -7,39 +8,77 @@ export function criarHora(hora: string): Date {
   return agora
 }
 
-export const setorAcessoRapido = {
-  id: 1,
-  nome: "Gabinete da Presidência",
-  responsavel: "Presidente da República",
-  endereco: "Endereço do Gabinete da Presidência",
-  equipes: [
-    {
-      id: 1,
-      descricao: "Gabinete da Presidência",
-      contatos: [
-        {
-          id: 1,
-          tipo: TipoContato.TELEFONE,
-          valor: "(63) 3218-4300 / 4401",
-        },
-        {
-          id: 2,
-          tipo: TipoContato.TELEFONE,
-          valor: "(63) 3218-4304 / 4409",
-        },
-        {
-          id: 3,
-          tipo: TipoContato.TELEFONE,
-          valor: "(63) 3218-4304 / 4409",
-        },
-      ] as Contato[],
-    },
-  ] as Equipe[],
-} as Setor
+export const equipesSetorAcessoRapido = [
+  {
+    id: uuidv4(),
+    descricao: "Tribunal - Geral",
+    contatos: [
+      {
+        id: uuidv4(),
+        tipo: TipoContato.TELEFONE,
+        valor: "(63) 3218-4300 / 4401",
+      },
+    ] as Contato[],
+  },
+  {
+    id: uuidv4(),
+    descricao: "Gab. da Presidência - Recepção",
+    contatos: [
+      {
+        id: uuidv4(),
+        tipo: TipoContato.TELEFONE,
+        valor: "(63) 3218-4304 / 4409",
+      },
+    ] as Contato[],
+  },
+  {
+    id: uuidv4(),
+    descricao: "CGJUS - Chefe de Gabinete",
+    contatos: [
+      {
+        id: uuidv4(),
+        tipo: TipoContato.EMAIL,
+        valor: "corregedoria@tjto.jus.br",
+      },
+      {
+        id: uuidv4(),
+        tipo: TipoContato.TELEFONE,
+        valor: "(63) 3218-4291 / (63) 3901-9091",
+      },
+    ] as Contato[],
+  },
+  {
+    id: uuidv4(),
+    descricao: "ESMAT- Recepção",
+    contatos: [
+      {
+        id: uuidv4(),
+        tipo: TipoContato.TELEFONE,
+        valor: "(63) 3218-4229",
+      },
+    ] as Contato[],
+  },
+  {
+    id: uuidv4(),
+    descricao: "Suporte E-Proc",
+    contatos: [
+      {
+        id: uuidv4(),
+        tipo: TipoContato.EMAIL,
+        valor: "processoeletronico@tjto.jus.br",
+      },
+      {
+        id: uuidv4(),
+        tipo: TipoContato.TELEFONE,
+        valor: "(63) 3218-4248/ 4388",
+      },
+    ] as Contato[],
+  },
+] as Equipe[]
 
 export const setores: Setor[] = [
   {
-    id: 1,
+    id: uuidv4(),
     nome: "ASMETO (Associação dos Magistrados do Tocantins)",
     responsavel: "Juíza Odete Batista Dias Almeida",
     endereco:
@@ -53,11 +92,11 @@ export const setores: Setor[] = [
     ],
     equipes: [
       {
-        id: 1,
+        id: uuidv4(),
         descricao: "ASMETO(Associação dos Magistrados do Tocantins)",
         contatos: [
           {
-            id: 1,
+            id: uuidv4(),
             tipo: TipoContato.TELEFONE,
             valor: "(63) 3223-9300",
           },
@@ -66,7 +105,7 @@ export const setores: Setor[] = [
     ],
   },
   {
-    id: 2,
+    id: uuidv4(),
     nome: "Assessoria Militar",
     responsavel: "Coronel Jaizon Veras Barbosa",
     endereco:
@@ -80,49 +119,49 @@ export const setores: Setor[] = [
     ],
     equipes: [
       {
-        id: 2,
+        id: uuidv4(),
         descricao: "Assessoria Militar - Gabinete",
         contatos: [
           {
-            id: 2,
+            id: uuidv4(),
             tipo: TipoContato.EMAIL,
             valor: "asmil@tjto.jus.br",
           },
           {
-            id: 3,
+            id: uuidv4(),
             tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4364",
           },
         ],
       },
       {
-        id: 3,
+        id: uuidv4(),
         descricao: "Assessoria Militar Contratos",
         contatos: [
           {
-            id: 4,
+            id: uuidv4(),
             tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4525",
           },
         ],
       },
       {
-        id: 4,
+        id: uuidv4(),
         descricao: "Guarita",
         contatos: [
           {
-            id: 5,
+            id: uuidv4(),
             tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4476",
           },
         ],
       },
       {
-        id: 5,
+        id: uuidv4(),
         descricao: "Sala de Monitoramento",
         contatos: [
           {
-            id: 5,
+            id: uuidv4(),
             tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4402",
           },

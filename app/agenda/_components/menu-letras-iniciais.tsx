@@ -22,7 +22,7 @@ export function MenuLetrasIniciais({ palavras, className }: MenuLetrasIniciaisPr
             disabled={!letrasIniciais.includes(letra)}
             className={`size-[30px] text-xl font-medium uppercase text-blue-600 ${
               letrasIniciais.includes(letra)
-                ? "border border-oceanBlue-500 bg-oceanBlue-500 text-white hover:bg-blue-600"
+                ? "border border-oceanBlue-500 bg-oceanBlue-500 text-white hover:bg-oceanBlue-600"
                 : "cursor-not-allowed border border-gray-300 bg-gray-200 text-gray-600"
             }`}>
             {letra}
