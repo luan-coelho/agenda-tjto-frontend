@@ -1,10 +1,3 @@
-export function criarHora(hora: string): Date {
-  const [horas, minutos] = hora.split(":").map(Number)
-  const agora = new Date()
-  agora.setHours(horas, minutos, 0, 0)
-  return agora
-}
-
 export enum TipoContato {
   TELEFONE = "Telefone",
   EMAIL = "Email",

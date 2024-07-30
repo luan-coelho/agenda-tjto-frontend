@@ -1,4 +1,4 @@
-import { Setor } from "@/types"
+import { Setor, TipoContato } from "@/types"
 
 import Line from "@/components/ui/line"
 import HorarioFuncionamento from "@/app/agenda/_components/horario-funcionamento"
@@ -33,8 +33,18 @@ export default function SetorCard({ setor }: SetorCardProps) {
           {setor.equipes.map(equipe => (
             <div
               key={equipe.id}
-              className="flex flex-col gap-2 space-x-2 rounded-md border border-gray-200 px-4 py-2 lg:static lg:flex-row lg:justify-between">
+              className="flex flex-col gap-2 rounded-md border border-gray-200 px-4 py-2 lg:justify-between">
               <span className="font-semibold">{equipe.descricao}</span>
+              {equipe.contatos.map(contato => (
+                <div key={contato.id} className="flex items-center justify-between">
+                  {contato.tipo === TipoContato.EMAIL && <a href={`mailto:${contato.valor}`}>{contato.valor}</a>}
+                  {contato.tipo === TipoContato.TELEFONE && <a href={`tel:${contato.valor}`}>{contato.valor}</a>}
+                  <div className="rounded-full bg-aquaTeal-600 px-2 py-1 text-xs font-bold text-white lg:static lg:mr-0 lg:mt-0">
+                    {contato.tipo}
+                  </div>
+                </div>
+              ))}
+              {equipe.contatos.length === 0 && <span className="text-muted-foreground">Sem contatos no momento</span>}
             </div>
           ))}
         </div>

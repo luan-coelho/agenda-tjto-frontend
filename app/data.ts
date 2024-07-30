@@ -1,4 +1,11 @@
-import { Contato, criarHora, DiaSemana, Equipe, Setor, TipoContato } from "@/types"
+import { Contato, DiaSemana, Equipe, Setor, TipoContato } from "@/types"
+
+export function criarHora(hora: string): Date {
+  const [horas, minutos] = hora.split(":").map(Number)
+  const agora = new Date()
+  agora.setHours(horas, minutos, 0, 0)
+  return agora
+}
 
 export const setorAcessoRapido = {
   id: 1,
@@ -78,12 +85,12 @@ export const setores: Setor[] = [
         contatos: [
           {
             id: 2,
-            tipo: "E-mail",
+            tipo: TipoContato.EMAIL,
             valor: "asmil@tjto.jus.br",
           },
           {
             id: 3,
-            tipo: "Telefone",
+            tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4364",
           },
         ],
@@ -94,7 +101,7 @@ export const setores: Setor[] = [
         contatos: [
           {
             id: 4,
-            tipo: "Telefone",
+            tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4525",
           },
         ],
@@ -105,7 +112,7 @@ export const setores: Setor[] = [
         contatos: [
           {
             id: 5,
-            tipo: "Telefone",
+            tipo: TipoContato.TELEFONE,
             valor: "(63) 3218-4476",
           },
         ],
@@ -113,7 +120,13 @@ export const setores: Setor[] = [
       {
         id: 5,
         descricao: "Sala de Monitoramento",
-        contatos: [],
+        contatos: [
+          {
+            id: 5,
+            tipo: TipoContato.TELEFONE,
+            valor: "(63) 3218-4402",
+          },
+        ],
       },
     ],
   },
